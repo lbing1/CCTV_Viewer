@@ -156,8 +156,13 @@ public class MainActivity extends AppCompatActivity {
                                         				video.style.position = 'fixed';
                                         				video.style.top = '0';
                                         				video.style.left = '0';
-                                        				video.style.width = '100%';
-                                        				video.style.height = '100%';
+                                        				if (document.title.indexOf('荔枝网') != -1) {
+                                        				    video.style.width = '50%';
+                                        				    video.style.height = '50%';
+                                        				} else {
+                                        				    video.style.width = '100%';
+                                       				        video.style.height = '100%';
+                                       				    }
                                         				video.style.zIndex = '9999';
 									video.style.objectFit= 'contain'; /* 保持宽高比，视频铺满容器 */
 									video.style.backgroundColor= 'black'; /* 背景颜色可以根据需要更改 */
@@ -449,7 +454,7 @@ public class MainActivity extends AppCompatActivity {
             webView.setInitialScale(getMinimumScale());
             var url=TVUrls.liveUrls2[g].getTvUrls().get(i).url;//  liveUrls[currentLiveIndex];
             webView.loadUrl(url);
-            if(url.startsWith("https://www.yangshipin.cn")) {
+            /*if(url.startsWith("https://www.yangshipin.cn")) {
                 ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
                 // 定义要执行的任务
@@ -468,7 +473,7 @@ public class MainActivity extends AppCompatActivity {
                 long delay = 1000;
                 scheduler.schedule(task, delay, TimeUnit.MILLISECONDS);
                 scheduler.shutdown();
-            }
+            }*/
         //}
     }
 
