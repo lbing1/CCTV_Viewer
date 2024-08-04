@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Dictionary;
 
 public class TVUrls {
-    public static String defJson="""
+    public static String defJson = """
                 [
                 {
                 "name":"荔枝网",
@@ -88,43 +88,48 @@ public class TVUrls {
                 }*/
                 ]
             """;
-    //https://api.cmc.hebtv.com/scms/api/com/article/getArticleList?catalogId=32557&siteId=1
-    public static void loadFromJson(String jsonString ,SharedPreferences preferences){
+
+    // https://api.cmc.hebtv.com/scms/api/com/article/getArticleList?catalogId=32557&siteId=1
+    public static void loadFromJson(String jsonString, SharedPreferences preferences) {
         // JSON字符串
 
         // 使用Gson库将JSON字符串转换为Java对象
         Gson gson = new Gson();
-        /*var aa="";
-        for (var a:TVUrls.liveUrls2
-             ) {
-            Log.d("TAG","-----" +a.name);
-            aa+="----\n";
-            for (var b:a.getTvUrls()
-                 ) {
-                aa+="\""+b.name+"\",\""+b.url+"\",\n";
-                System.out.println("\""+b.name+","+b.url+",");
-                Log.d("TAG", "\""+b.name+","+b.url+",");
-            }
-        }*/
-        var urls2=gson.fromJson(jsonString,TVUrlGroup[].class);
-        TVUrlGroup cg=null;
+        /*
+         * var aa="";
+         * for (var a:TVUrls.liveUrls2
+         * ) {
+         * Log.d("TAG","-----" +a.name);
+         * aa+="----\n";
+         * for (var b:a.getTvUrls()
+         * ) {
+         * aa+="\""+b.name+"\",\""+b.url+"\",\n";
+         * System.out.println("\""+b.name+","+b.url+",");
+         * Log.d("TAG", "\""+b.name+","+b.url+",");
+         * }
+         * }
+         */
+        var urls2 = gson.fromJson(jsonString, TVUrlGroup[].class);
+        TVUrlGroup cg = null;
         Gson gson2 = new Gson();
         try {
 
             cg = gson2.fromJson(preferences.getString("array_key", """
-                   {
-                    "name":"自定义",
-                    "url":[]
-                    }
-                    """),TVUrlGroup.class);
-        }catch (Exception ee){
-            cg=new TVUrlGroup("自定义",new ArrayList<>());
+                    {
+                     "name":"自定义",
+                     "url":[]
+                     }
+                     """), TVUrlGroup.class);
+        } catch (Exception ee) {
+            cg = new TVUrlGroup("自定义", new ArrayList<>());
         }
-        var custom= new TVUrlGroup[]{cg};
-        TVUrls.liveUrls2= ArrayUtils.concat(urls2,custom);
+        var custom = new TVUrlGroup[] { cg };
+        TVUrls.liveUrls2 = ArrayUtils.concat(urls2, custom);
 
     }
-    //public static Dictionary<String,String[]> liveUrls2=new Dictionary<String,String[]>();
-    public static  TVUrlGroup[] liveUrls2 ;
+
+    // public static Dictionary<String,String[]> liveUrls2=new
+    // Dictionary<String,String[]>();
+    public static TVUrlGroup[] liveUrls2;
 
 }
